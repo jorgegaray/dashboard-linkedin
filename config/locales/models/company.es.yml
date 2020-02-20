@@ -1,0 +1,19 @@
+---
+es:
+  activerecord:
+    models:
+      company: Compañia
+    attributes:
+      company:
+        name: Nombre Compañia
+        description: Descripcion
+        country: Pais
+        country_list:
+          chile: Chile
+          peru: Peru
+          colombia: Colombia
+        area: Area de Negocio
+        web: Página Web
+        direccion: Dirección
+        email: Email de contacto
+        size: Tamaño de la compañia

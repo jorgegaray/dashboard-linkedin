@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
 
 
   def index
-    @company = Company.all
+    @companies = Company.all
   end
 
 
@@ -19,7 +19,7 @@ class CompaniesController < ApplicationController
 
 
   def create
-    @company= Company.new(company_params)
+    @company= Company.create(company_params)
 
     respond_to do |format|
       if @company.save
@@ -56,14 +56,26 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def find_companies
+    @companies = Company.buscar(linkedin_params["name"])
+    render :index
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def company_params
+      params.require(:company).permit([:id, :name, :description, :area, :web, :country, :email, :size])
+    end
+
+    def linkedin_params
+      params.require(:linkedin).permit([:name, :role])
+    end
+
+    def load_resource
+      @company = Company.new(company_params)
+    end
+
     def set_company
       @company = Company.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
-    def company_params
-      params.require(:company).permit(:name, :linkind_id, :description, :area, :web, :size, :email)
-    end
 end

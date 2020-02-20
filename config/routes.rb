@@ -4,5 +4,11 @@ Rails.application.routes.draw do
 
   resources :people
   
-  resources :companies
+  resources :companies do
+    collection do
+      get :find_companies
+      get :linkedin_token
+      post :linkedin_token
+    end
+  end
 end
