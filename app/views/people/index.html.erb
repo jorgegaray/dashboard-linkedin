@@ -35,3 +35,51 @@
 <br>
 
 <%= link_to 'New Person', new_person_path %>
+
+<div class="col col-12 justify-content-center">
+  <h3>Personas</h3>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered" width="100%">
+      <thead >
+      <tr>
+        <th>Name</th>
+        <th>Linkedin</th>
+        <th>Last name</th>
+        <th>Born date</th>
+        <th>Phone</th>
+        <th>Url</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+      <tfoot>
+      <tr>
+      <th>Name</th>
+      <th>Linkedin</th>
+      <th>Last name</th>
+      <th>Born date</th>
+      <th>Phone</th>
+      <th>Url</th>
+      <th colspan="3"></th>
+      </tr>
+      </tfoot>
+      <tbody>
+        <% Company.all.each do |company| %>
+          <tr>
+            <td><%= company.name %></td>
+            <td><%= company.size %></td>
+            <td><%= company.country %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br>
+  </div>
+  <div class="box-footer">
+    <%= link_to 'Crear', new_company_path, class: "btn btn-default pull-right" %>
+  </div>
+
+  <!-- /.box-body -->
+</div>
+</div>
+</div>
+<% content_for :title do 'Compañias' end %>
