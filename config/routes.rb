@@ -2,9 +2,8 @@ Rails.application.routes.draw do
   get 'welcome/index' 
   root 'welcome#index'
 
-  resources :people do    
-  end
+  resources :people
   
-  resources :companies do
+  resources :companies, only: [:new, :create, :edit, :update, :index] do
   end
 end

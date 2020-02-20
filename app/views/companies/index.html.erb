@@ -1,4 +1,4 @@
-<div class="col col-12 justify-content-center">
+<div class="col col-12 justify-content-center m-5">
   <h3>Compañias</h3>
   <div class="table-responsive">
     <table class="table table-striped table-bordered" width="100%">
@@ -7,6 +7,11 @@
         <th>Empresa</th>
         <th>Tamaño</th>
         <th>Pais</th>
+        <th>Area</th>
+        <th>Web</th>
+        <th>LinkedIn</th>
+        <th>Email</th>
+        <th></th>
       </tr>
       </thead>
       <tfoot>
@@ -14,6 +19,11 @@
         <th>Empresa</th>
         <th>Tamaño</th>
         <th>Pais</th>
+        <th>Area</th>
+        <th>Web</th>
+        <th>LinkedIn</th>
+        <th>Email</th>
+        <th></th>
       </tr>
       </tfoot>
       <tbody>
@@ -22,6 +32,11 @@
             <td><%= company.name %></td>
             <td><%= company.size %></td>
             <td><%= company.country %></td>
+            <td><%= company.area %></td>
+            <td><%= company.web %></td>
+            <td><%= company.linkeind_id %></td>
+            <td><%= company.email %></td>
+            <td><%= link_to 'Edit', edit_company_path(company), class: "btn btn-default btn-xs pull-right" %><%= link_to 'Destroy', company_path(company), class: "btn btn-default btn-xs pull-right", method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
           </tr>
         <% end %>
       </tbody>
@@ -30,6 +45,7 @@
   </div>
   <div class="box-footer">
     <%= link_to 'Crear', new_company_path, class: "btn btn-default pull-right" %>
+     <%= link_to 'Volver', welcome_index_path, class: "btn btn-default pull-right" %>
   </div>
 
   <!-- /.box-body -->
