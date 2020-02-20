@@ -1,62 +1,56 @@
 <p id="notice"><%= notice %></p>
 
-
-
-
-
 <div class="col col-12 justify-content-center">
   <h3>Personas</h3>
   <div class="table-responsive">
     <table class="table table-striped table-bordered" width="100%">
       <thead >
-      <tr>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Fecha nacimiento</th>
-      <th>Fono Contacto</th>
-      <th>Email</th>
-      <th>Página Web</th>
-      <th>Perfil LinkedIn</th>
-      <th colspan="2"></th>
-      </tr>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Fecha nacimiento</th>
+          <th>Fono Contacto</th>
+          <th>Email</th>
+          <th>Página Web</th>
+          <th>Perfil LinkedIn</th>
+          <th colspan="3"></th>
+        </tr>
       </thead>
       <tfoot>
-      <tr>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Fecha nacimiento</th>
-      <th>Fono Contacto</th>
-      <th>Email</th>
-      <th>Página Web</th>
-      <th>Perfil LinkedIn</th>
-      <th colspan="2"></th>
-      </tr>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Fecha nacimiento</th>
+          <th>Fono Contacto</th>
+          <th>Email</th>
+          <th>Página Web</th>
+          <th>Perfil LinkedIn</th>
+          <th colspan="3"></th>
+        </tr>
       </tfoot>
       <tbody>
         <% @people.each do |person| %>
           <tr>
             <td><%= person.name %></td>
-        <td><%= person.last_name %></td>
-        <td><%= person.born_date %></td>
-        <td><%= person.phone %></td>
-        <td><a href="mailto:<%= person.email%>"><%= person.email%></td>
-        <td><%= link_to person.url, "http://#{person.url}" %></td>
-        <td><%= person.linkedIn_id %></td>
-        <td><%= link_to 'Show', person %></td>
-        <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= person.last_name %></td>
+            <td><%= person.born_date %></td>
+            <td><%= person.phone %></td>
+            <td><a href="mailto:<%= person.email%>"><%= person.email%></td>
+            <td><%= link_to person.url, "http://#{person.url}" %></td>
+            <td><%= person.linkedIn_id %></td>
+            <td><%= link_to 'trabajos', "trabajos" %></td>
+            <td><%= link_to 'Show', person %></td>
+            <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
     <br>
-  </div>
-  <div class="box-footer">
-    <%= link_to 'Crear', new_company_path, class: "btn btn-default pull-right" %>
-  </div>
 
-  <!-- /.box-body -->
+  </div>
 </div>
 
-<%= link_to 'New Person', new_person_path %>
+<%= link_to 'Crear nueva persona', new_person_path %>
+<%= link_to 'Volver', welcome_index_path, class: "btn btn-default pull-right" %>
 
 <% content_for :title do 'Compañias' end %>

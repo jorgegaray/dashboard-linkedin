@@ -27,16 +27,17 @@
       </tr>
       </tfoot>
       <tbody>
-        <% @companies.each do |company| %>
+        <% @companies&.each do |company| %>
           <tr>
             <td><%= company.name %></td>
             <td><%= company.size %></td>
             <td><%= company.country %></td>
             <td><%= company.area %></td>
-            <td><%= company.web %></td>
+            <td><%= link_to company.web, "http://#{company.web}" %></td>
             <td><%= company.linkeind_id %></td>
             <td><%= company.email %></td>
-            <td><%= link_to 'Edit', edit_company_path(company), class: "btn btn-default btn-xs pull-right" %><%= link_to 'Destroy', company_path(company), class: "btn btn-default btn-xs pull-right", method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+            <td><%= link_to 'Show', company %></td>
+            <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>
