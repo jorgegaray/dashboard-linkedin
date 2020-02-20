@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200220160316) do
+ActiveRecord::Schema.define(version: 20200220160335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,13 +26,26 @@ ActiveRecord::Schema.define(version: 20200220160316) do
     t.string "email"
   end
 
+  create_table "jobs", force: :cascade do |t|
+    t.bigint "company_id"
+    t.bigint "person_id"
+    t.string "role"
+    t.date "start_date"
+    t.date "end_date"
+    t.index ["company_id"], name: "index_jobs_on_company_id"
+    t.index ["person_id"], name: "index_jobs_on_person_id"
+  end
+
   create_table "people", force: :cascade do |t|
-    t.string "name"
-    t.integer "linkedIn_id"
+    t.string "name", null: false
     t.string "last_name"
+    t.integer "linkedIn_id"
     t.date "born_date"
     t.string "phone"
     t.string "url"
+    t.bigint "job_id"
+    t.index ["job_id"], name: "index_people_on_job_id"
   end
 
+  add_foreign_key "people", "jobs"
 end
