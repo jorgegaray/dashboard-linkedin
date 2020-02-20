@@ -45,9 +45,6 @@ class CompaniesController < ApplicationController
 
   def find_companies
     @companies = Company.buscar(linkedin_params["name"])
-    #state = Tenant.current_tenant.host + linkedin_publish_seleccion_path(@seleccion) + '%%%' + SecureRandom.hex(24)
-    linkedin = Linkedin::Token.call
-    session["linkedin.state"] = state
     render :index
   end
 
@@ -56,8 +53,6 @@ class CompaniesController < ApplicationController
 
     linkedin = Linkedin::Token.call
     @companies = Company.buscar(linkedin_params["name"])
-    #state = Tenant.current_tenant.host + linkedin_publish_seleccion_path(@seleccion) + '%%%' + SecureRandom.hex(24)
-    linkedin = Linkedin::Token.call
     session["linkedin.state"] = state
     render :index
   end
@@ -71,7 +66,6 @@ class CompaniesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to linkedin.auth_url(state) }
       format.js {}
-      end
     end
     @companies = Company.buscar(linkedin_params["name"])
     #state = Tenant.current_tenant.host + linkedin_publish_seleccion_path(@seleccion) + '%%%' + SecureRandom.hex(24)
