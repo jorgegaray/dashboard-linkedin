@@ -53,6 +53,10 @@ gem "cells-rails"
 gem "temple", "~> 0.8"
 gem 'erbse'
 
+gem 'bootstrap', '~> 4.3.1'
+
+gem 'jquery-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
