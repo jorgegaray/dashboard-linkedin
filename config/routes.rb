@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :people
   
-  resources :companies, only: [:new, :create, :edit, :update, :index] do
+  resources :companies do
     collection do
       get :find_companies
       get :linkedin_token
