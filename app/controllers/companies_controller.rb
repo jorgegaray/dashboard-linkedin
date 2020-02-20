@@ -1,27 +1,39 @@
 class CompaniesController < ApplicationController
-  before_action :load_resource, only: :create
-  before_action :set_company, only: [:edit, :update]
+  before_action :set_company, only: [:show, :edit, :update, :destroy]
 
-  def create
-    if @company.save
-      flash[:notice] = "Creado"
-    else
-      flash[:error] = "Error al crear"
-    end
-  end
 
   def index
-    @companies = Company.all
+    @company = Company.all
+  end
+
+
+  def show
   end
 
   def new
     @company = Company.new
-    redirect_to company_path
   end
 
   def edit
   end
 
+
+  def create
+    @company= Company.new(company_params)
+
+    respond_to do |format|
+      if @company.save
+        format.html { redirect_to @company, notice: 'Person was successfully created.' }
+        format.json { render :show, status: :created, location: @company}
+      else
+        format.html { render :new }
+        format.json { render json: @company.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /people/1
+  # PATCH/PUT /people/1.json
   def update
     respond_to do |format|
       if @company.update(company_params)
@@ -34,26 +46,24 @@ class CompaniesController < ApplicationController
     end
   end
 
+  # DELETE /people/1
+  # DELETE /people/1.json
   def destroy
-    set_company
     @company.destroy
     respond_to do |format|
-      format.html { redirect_to company_url, notice: 'Company was successfully destroyed.' }
+      format.html { redirect_to companies_url, notice: 'Person was successfully destroyed.' }
       format.json { head :no_content }
     end
-    redirect_to company_path
   end
 
   private
-    def company_params
-      params.require(:company).permit([:id, :name, :description, :area, :web, :country, :email, :size])
-    end
-
-    def load_resource
-      @company = Company.new(company_params)
-    end
-
+    # Use callbacks to share common setup or constraints between actions.
     def set_company
       @company = Company.find(params[:id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def company_params
+      params.require(:company).permit(:name, :linkind_id, :description, :area, :web, :size, :email)
     end
 end

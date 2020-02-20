@@ -2,14 +2,6 @@
   <div class="box-header with-border">
     <h3 class="box-title">Editando Empresa</h3>
   </div>
-	<%= simple_form_for(edit_company_path()) do |f|%>
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :area %>
-    <%= f.input :web %>
-    <%= f.input :linkind_id %>
-    <%= f.input :size %>
-    <%= f.input :email %>
-  <% end %>
+  <%= render partial: 'form', company: @company%>
 </div>
 <%= link_to 'Back', companies_path %>

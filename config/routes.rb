@@ -4,6 +4,5 @@ Rails.application.routes.draw do
 
   resources :people
   
-  resources :companies, only: [:new, :create, :edit, :update, :index] do
-  end
+  resources :companies
 end
