@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarsDashBoard">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Empresas <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href=<%=companies_path()%>>Empresas <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href=<%=people_path()%>>Personas</a>
@@ -16,15 +16,14 @@
       </div>
 </nav>
 
-
- <main class="container pt-5" role="main">
+<main class="container pt-5" role="main">
       <div class="jumbotron">
-        <h1>DashBoard de  LinkedIn</h1>
+        <h1>DashBoard de LinkedIn</h1>
         <p class="lead">Bienvenido</p>
       </div>
   </main>
  <div class="container">
-  <form>
+  <form action="/people" method="index">
     <div class="form-group">
       <label for="InputCompany">Buscar Empresa</label>
       <input type="name" class="form-control" id="InputName" placeholder="Ingresar Nombre">
