@@ -15,4 +15,6 @@
 
 class Company < ApplicationRecord
     has_many :jobs, dependent: :destroy
+
+    enum country: [:chile, :colombia, :peru]
 end
