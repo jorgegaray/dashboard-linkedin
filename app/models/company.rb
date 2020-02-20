@@ -14,7 +14,11 @@
 #
 
 class Company < ApplicationRecord
-    has_many :jobs, dependent: :destroy
+  has_many :jobs, dependent: :destroy
 
-    enum country: [:chile, :colombia, :peru]
+  enum country: [:chile, :colombia, :peru]
+
+  scope :buscar, -> { where("name LIKE '%?%' OR area '%?%'", name, area) }
+
+     
 end

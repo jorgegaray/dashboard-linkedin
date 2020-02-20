@@ -19,16 +19,24 @@ class CompaniesController < ApplicationController
   
 
   def update
-
   end
 
   def index
-      
+  
+  end
+
+  def find_companies
+    @companies = Company.buscar(linkedin_params["name"], linkedin_params["role"])
+    render :index
   end
 
   private
     def company_params
       params.require(:company).permit([:name, :description, :area, :web, :country, :email, :size])
+    end
+
+    def linkedin_params
+      params.require(:linkedin).permit([:name, :role])
     end
 
     def load_resource
