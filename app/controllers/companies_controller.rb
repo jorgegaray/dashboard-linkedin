@@ -45,7 +45,38 @@ class CompaniesController < ApplicationController
 
   def find_companies
     @companies = Company.buscar(linkedin_params["name"])
-    byebug
+    #state = Tenant.current_tenant.host + linkedin_publish_seleccion_path(@seleccion) + '%%%' + SecureRandom.hex(24)
+    linkedin = Linkedin::Token.call
+    session["linkedin.state"] = state
+    render :index
+  end
+
+  def find_linkedin
+    return handle_unverified_request if params.require(:state) != session.delete("linkedin.state")
+
+    linkedin = Linkedin::Token.call
+    @companies = Company.buscar(linkedin_params["name"])
+    #state = Tenant.current_tenant.host + linkedin_publish_seleccion_path(@seleccion) + '%%%' + SecureRandom.hex(24)
+    linkedin = Linkedin::Token.call
+    session["linkedin.state"] = state
+    render :index
+  end
+
+  def find_linkedin_oauth
+    state = find_linkedin_companies_path(@seleccion) + '%%%' + SecureRandom.hex(24)
+    session["linkedin.state"] = state
+
+    linkedin = Linkedin::Token.call
+
+    respond_to do |format|
+      format.html { redirect_to linkedin.auth_url(state) }
+      format.js {}
+      end
+    end
+    @companies = Company.buscar(linkedin_params["name"])
+    #state = Tenant.current_tenant.host + linkedin_publish_seleccion_path(@seleccion) + '%%%' + SecureRandom.hex(24)
+    linkedin = Linkedin::Token.call
+    session["linkedin.state"] = state
     render :index
   end
 

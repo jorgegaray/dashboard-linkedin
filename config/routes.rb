@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   resources :companies, only: [:new, :create, :edit, :update, :index] do
     collection do
       get :find_companies
-      get :linkedin_token
-      post :linkedin_token
+      post :find_linkedin_oauth
+      get :find_linkedin
     end
   end
 end
