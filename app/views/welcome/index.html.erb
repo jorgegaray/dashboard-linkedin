@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+      <a class="navbar-brand" href="#">DashBoard LinkedIn</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsnavbarsDashBoard" aria-controls="navbarsDashBoardt" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+ 
+      <div class="collapse navbar-collapse" id="navbarsDashBoard">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Empresas <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=<%=people_path()%>>Personas</a>
+          </li>
+        </ul>
+      </div>
+</nav>
+
+
+ <main class="container pt-5" role="main">
+      <div class="jumbotron">
+        <h1>DashBoard de  LinkedIn</h1>
+        <p class="lead">Bienvenido</p>
+      </div>
+  </main>
+ <div class="container">
+  <form>
+    <div class="form-group">
+      <label for="InputCompany">Buscar Empresa</label>
+      <input type="name" class="form-control" id="InputName" placeholder="Ingresar Nombre">
+      <input type="role" class="form-control" id="InputRole" placeholder="Ingresar Cargo">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

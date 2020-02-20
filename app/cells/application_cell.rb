@@ -8,7 +8,6 @@ class ApplicationCell < Cell::ViewModel
     include ActionView::Helpers::TagHelper
     include ActionView::Helpers::DateHelper
     include ApplicationHelper
-    include Cell::LocalErb
     include ERB::Util
     include IconsHelper
     include SimpleForm::ActionViewExtensions::FormHelper
