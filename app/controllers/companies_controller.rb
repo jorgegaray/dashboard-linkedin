@@ -19,7 +19,7 @@ class CompaniesController < ApplicationController
 
 
   def create
-    @company= Company.create(company_params)
+    @company= Company.new(company_params)
 
     respond_to do |format|
       if @company.save
