@@ -1,15 +1,35 @@
-<%= simple_form_for(@company, defaults: { wrapper_html: { class: 'col-sm-6' } }) do |f| %>
-  <div class="box-body">
-    <div class="row">
-      <div class="form-group col-sm-6">
-        <%= f.input :name %>
-        <%= f.input :description %>
-      </div>
-    </div>
-    <div class="box-footer">
-      <div class="pull-right">
-        <%= f.submit 'Crear', class: "btn btn-primary btn-md", data: { disable_with: 'Procesando...' } %>
-      </div>
-    </div>
+<%= form_with(model: @company, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :company_name %>
+  </div>
+    <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :company_description %>
+  </div>
+    <div class="field">
+    <%= form.label :area %>
+    <%= form.text_field :area, id: :company_area %>
+  </div>
+    <div class="field">
+    <%= form.label :web %>
+    <%= form.text_field :name, id: :company_web %>
+  </div>
+    <div class="field">
+    <%= form.label :linkind_id %>
+    <%= form.text_field :name, id: :company_linkind_id %>
+  </div>
+    <div class="field">
+    <%= form.label :size %>
+    <%= form.number_field :name, id: :company_size %>
+  </div>
+    <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :company_email %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
   </div>
 <% end %>

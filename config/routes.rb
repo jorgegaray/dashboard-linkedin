@@ -2,10 +2,9 @@ Rails.application.routes.draw do
   get 'welcome/index' 
   root 'welcome#index'
 
-  resources :people do
-  end
+  resources :people
   
-  resources :companies do
+  resources :companies, only: [:new, :create, :edit, :update, :index] do
     collection do
       get :find_companies
       get :linkedin_token
