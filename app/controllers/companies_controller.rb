@@ -16,7 +16,6 @@ class CompaniesController < ApplicationController
 
   def new
     @company = Company.new
-    redirect_to company_path
   end
 
   def edit
@@ -45,7 +44,8 @@ class CompaniesController < ApplicationController
   end
 
   def find_companies
-    @companies = Company.buscar(linkedin_params["name"], linkedin_params["role"])
+    @companies = Company.buscar(linkedin_params["name"])
+    byebug
     render :index
   end
 

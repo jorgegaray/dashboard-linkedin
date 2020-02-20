@@ -8,7 +8,7 @@
 #  area        :string
 #  web         :string
 #  linkeind_id :integer
-#  country     :integer          default(0)
+#  country     :integer          default("chile")
 #  size        :integer
 #  email       :string
 #
@@ -18,7 +18,7 @@ class Company < ApplicationRecord
 
   enum country: [:chile, :colombia, :peru]
 
-  scope :buscar, -> { where("name LIKE '%?%' OR area '%?%'", name, area) }
+  scope :buscar, -> (name) { where("name ILIKE CONCAT('%',?,'%')", name) }
 
      
 end
