@@ -57,8 +57,7 @@ class CompaniesController < ApplicationController
   end
 
   def find_companies
-    Scraper.scrapeCompany(linkedin_params["name"])
-    @companies = Company.buscar(linkedin_params["name"])
+    @companies = Linkedin::Scraper.scrapeCompany(linkedin_params["name"])
     render :index
   end
 

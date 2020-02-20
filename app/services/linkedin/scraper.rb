@@ -1,6 +1,6 @@
 require 'pincers'
 
-class Scraper
+class Linkedin::Scraper
     def self.scrapeCompany company_name
         results = Array.new
         
@@ -20,6 +20,7 @@ class Scraper
                 array_keys = Array.new
                 array_value = Array.new
                 link = result_item.search("a.search-result__result-link").attribute("href")
+                name = result_item.search("h3[class='search-result__title t-16 t-black t-bold']").text
                 if link.include?("/company/")
                     pincers.goto link.concat("about/")
                     
@@ -32,20 +33,39 @@ class Scraper
                     }
                     
                     array_keys.each_with_index {|k,i|company_data[k] = array_value[i]}
-                    
+                    company_data['nombre'] = name
                     results.push(company_data)
                     break
                 end
                 break
             }
-            saveCompany(result)
+            saveCompany(results)
         end
         
     end
     
-    def saveCompany company_data
-        puts company_data
-        byebug
+    def self.saveCompany company_data
+        data = []
+        company_data.each do |company|
+            unless Company.where(name: company['nombre']).empty?
+              data.push(Company.where(name: company['nombre']).first)
+              next
+            end
+            element = Company.new(get_data(company))
+            element.save
+            data.push(element)
+        end
+        data
+    end
+
+    def self.get_data company
+        { 
+        name: company['nombre'],
+        description: company['fundación'],
+        area:company['sector'],  
+        web: company['sitioweb'],    
+        country: 0       
+        }
     end
     
 end
